@@ -743,6 +743,16 @@ def run_docker(
     if mem_limit is None:
         mem_limit = psutil.virtual_memory().available
 
+    # Use the nvidia runtime only if it is actually registered with Docker,
+    # otherwise container creation fails with "unknown or invalid runtime name".
+    use_nvidia = False
+    if os.path.exists("/usr/bin/nvidia-smi"):
+        try:
+            available_runtimes = client.info().get("Runtimes", {})
+            use_nvidia = "nvidia" in available_runtimes
+        except Exception:
+            use_nvidia = False
+
     container = client.containers.run(
         definition.docker_tag,
         cmd,
@@ -767,7 +777,7 @@ def run_docker(
         network_mode="host",
         detach=True,
         privileged=True,
-        runtime="nvidia" if os.path.exists("/usr/bin/nvidia-smi") else None,
+        runtime="nvidia" if use_nvidia else None,
     )
     logger = logging.getLogger(f"bvb.{container.short_id}")
 

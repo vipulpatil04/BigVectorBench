@@ -78,7 +78,7 @@ def get_dataset(dataset_name: str) -> Tuple[h5py.File, int]:
     if dataset_name in ANN_DATASETS or dataset_name in RANDOM_DATASETS:
         dataset_url = f"https://ann-benchmarks.com/{dataset_name}.hdf5"
     elif dataset_name in BVB_DATASETS:
-        dataset_url = f"https://huggingface.co/datasets/Patrickcode/BigVectorBench/blob/main/{dataset_name}.hdf5"
+        dataset_url = f"https://huggingface.co/datasets/Patrickcode/BigVectorBench/resolve/main/{dataset_name}.hdf5"
         # dataset_url = f"https://hf-mirror.com/datasets/Patrickcode/BigVectorBench/resolve/main/{dataset_name}.hdf5"
     elif dataset_name in ART_DATASETS:
         dataset_url = f"https://huggingface.co/datasets/Patrickcode/BigVectorBench/blob/main/{dataset_name}.hdf5"
