@@ -900,6 +900,9 @@ BVB_DATASETS: Dict[str, Callable[[str], None]] = {
     "gpt4vision-1024-euclidean-mm": lambda out_fn: bvb_dataset(
         out_fn, "gpt4vision-1024-euclidean-mm"
     ),
+    "gpt4vision-clip-512-euclidean-mm": lambda out_fn: bvb_dataset(
+        out_fn, "gpt4vision-clip-512-euclidean-mm"
+    ),
     "librispeech_asr-1024-euclidean-mm": lambda out_fn: bvb_dataset(
         out_fn, "librispeech_asr-1024-euclidean-mm"
     ),
